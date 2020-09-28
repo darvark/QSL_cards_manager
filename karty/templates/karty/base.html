@@ -17,7 +17,17 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="btn btn-info btn-md" href="{% url "karta:qsl_add" %}">+ Nowa QSL</a>
+            <a class="btn btn-info btn-md" href="{% url "qsl_add" %}">+ Nowa QSL</a>
+          </li>
+          <li class="nav-item"></li>
+          <li class="nav-item">
+          {% if user.is_authenticated %}
+            <a href="{% url 'qsl_add' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            <a class="btn btn-warning btn-md" href="{% url 'logout' %}">Wyloguj {{ user.username }}</a>
+          {% else %}
+            <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+            <a href="{% url 'rejestracja' %}" class="top-menu"><span class="glyphicon glyphicon-tower"></span></a>
+          {% endif %}
           </li>
         </ul>
       </div>
