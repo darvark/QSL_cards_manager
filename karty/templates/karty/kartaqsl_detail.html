@@ -1,0 +1,22 @@
+{% extends 'karty/base.html' %}
+
+{% block content %}
+<h1 class="my-4">Szczegóły -
+  <small>{{ object.name }}</small>
+</h1>
+<div class="row">
+  <div class="col-12">
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Znak:</strong> {{ object.znak }}</li>
+      <li class="list-group-item"><strong>Data QSO:</strong> {{ object.qso_data }}</li>
+      <li class="list-group-item"><strong>Przeczytana:</strong> {%if object.wyslana %}Tak{% else %}Nie{% endif %}</li>
+      <li class="list-group-item"><strong>Wysłana:</strong> {%if object.przczytana %}Tak{% else %}Nie{% endif %}</li>
+    </ul>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-12">
+    <a href="{% url 'karta:qsl_list' %}" class="btn btn-info btn-sm">Powrót</a>
+  </div>
+</div>
+{% endblock %}

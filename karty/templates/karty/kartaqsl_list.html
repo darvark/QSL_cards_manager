@@ -1,0 +1,48 @@
+{% extends 'karty/base.html' %}
+
+{% block content %}
+<h1 class="my-4">
+  <small>Lista kart QSL</small>
+</h1>
+<div class="row">
+  {% if object_list %}
+  <div class="col-12">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Znak</th>
+          <th scope="col">Data QSO</th>
+	  <th scope='col' class='text-center'>Wyslana</th>
+	  <th scope='col' class='textcenter'>Odebrana</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for qsl in object_list %}
+        <tr>
+          <td>{{ qsl.znak }}</td>
+          <td>{{ qsl.qso_data }}</td>
+          <td class="text-center">
+            {% if qsl.wyslana %}<span class="badge badge-info">Tak</span>{% else %}<span class="badge badge-danger">Nie</span>{% endif %}
+          </td>
+	  <td class='text-center'>
+	    {% if qsl.odebrana %}<span class='badge badge-info'>Tak</span>{% else %}<span class='badge badge-danger'>Nie</span>{% endif %}
+	  </td>
+          <td class="text-right">
+            <a href="{% url 'karta:qsl_detail' qsl.id %}"><button type="button" class="btn btn-sm btn-primary">Szczegóły</button></a>
+            <a href="{% url 'karta:qsl_edit' qsl.id %}"><button type="button" class="btn btn-sm btn-warning">Zmień</button></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="col-12">
+    <div class="alert alert-warning" role="alert">
+      Lista kart QSL jest pusta. Możesz <a class="badge badge-info" href="{% url "karta:qsl_add" %}"><strong>dodać</strong></a> jedną.
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
