@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1 class="my-4">
-  {% if not object.id %} Nowa karta QSL {% else %} Edycja - <small>{{ object.znak }}</small>{% endif %}
+  {% if not object.id %} Nowa karta QSL {% else %} Edycja karty QSL od/do <a style="color:red;">{{ object.znak }}</a>{% endif %}
 </h1>
 <div class="row">
   <div class="col-12">

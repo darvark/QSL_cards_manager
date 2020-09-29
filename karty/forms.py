@@ -11,14 +11,8 @@ class KartaQSLForm(forms.ModelForm):
 
     class Meta:
         model = KartaQSL
-        fields = ('znak', 'qso_data', 'wyslana', 'odebrana', 'operator')
+        fields = ('znak', 'qso_data', 'wyslana', 'odebrana')
 
-
-    def __init__(self, *args, **kwargs):
-        operator = kwargs.pop('operator')
-        super(KartaQSLForm, self).__init__(*args, **kwargs)
-        self.fields['operator'].initial = operator
-    
 
 class UserRegisterForm(forms.ModelForm):
     email = forms.EmailField(label='Email address')
